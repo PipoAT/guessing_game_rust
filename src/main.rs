@@ -28,7 +28,10 @@ fn main() {
             .expect("Failed to read line");
 
         // add handling in case input is not a numeric value
-        let guess: u32 = guess.trim().parse().expect("Please type a number!");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
 
         // print the user input
         println!("You guessed: {}", guess);
